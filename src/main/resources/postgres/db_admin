@@ -1,0 +1,14 @@
+
+-- tworzenie schematu (= paczki tabel)
+create SCHEMA xxx;
+
+-- wybór schematu
+set search_path = "xxx"
+
+-- tworzenie tabel:
+CREATE TABLE smart
+(
+  id SERIAL PRIMARY KEY,
+  name TEXT
+);
+

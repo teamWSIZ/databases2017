@@ -1,0 +1,9 @@
+
+-- wstawianie wartosci w przypadku gdy pole 'id' jest auto-increment
+INSERT INTO smart (name) VALUES ('X11');
+
+-- przeszukiwanie
+SELECT * FROM suppliers where city like 'L%' LIMIT 2;
+
+
+
