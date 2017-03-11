@@ -4,9 +4,9 @@
 SELECT * FROM suppliers where city like 'L%' LIMIT 2;
 
 
-SELECT * FROM Suppliers order by country
-SELECT * FROM Suppliers where country = 'USA'
-SELECT * FROM [Customers] where CustomerName like 'A%'
+SELECT * FROM Suppliers order by country;
+SELECT * FROM Suppliers where country = 'USA';
+SELECT * FROM Customers where CustomerName like 'A%';
 
 
 
