@@ -8,6 +8,7 @@ SELECT * FROM Suppliers order by country
 SELECT * FROM Suppliers where country = 'USA'
 SELECT * FROM [Customers] where CustomerName like 'A%'
 
+SELECT * FROM [Orders] where orderdate > '1996-07-06' and orderdate < '1996-07-10'
 
 
 -- wstawianie wartosci w przypadku gdy pole 'id' jest auto-increment
