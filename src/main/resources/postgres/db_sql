@@ -1,9 +1,17 @@
 
--- wstawianie wartosci w przypadku gdy pole 'id' jest auto-increment
-INSERT INTO smart (name) VALUES ('X11');
 
 -- przeszukiwanie
 SELECT * FROM suppliers where city like 'L%' LIMIT 2;
+
+
+SELECT * FROM Suppliers order by country
+SELECT * FROM Suppliers where country = 'USA'
+SELECT * FROM [Customers] where CustomerName like 'A%'
+
+
+
+-- wstawianie wartosci w przypadku gdy pole 'id' jest auto-increment
+INSERT INTO smart (name) VALUES ('X11');
 
 
 
