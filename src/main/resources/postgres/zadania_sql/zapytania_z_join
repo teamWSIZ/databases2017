@@ -1,0 +1,19 @@
+
+-- znaleźć dla zamówień wysłanych przez pocztę o id=1 nazwiska klientów
+-- i nazwiska pracowników związanych z tymi zamówieniami
+SELECT c.customername, c.city, c.country as customercountry, e.lastname
+from customers c, employees e, orders o
+WHERE o.customerid = c.customerid AND
+      o.employeeid = e.employeeid AND
+      o.shipperid = 1;
+
+
+-- bardziej rozbudowane:
+SELECT c.customername, c.country as customercountry,
+                       e.lastname responsible_employee,
+                       o.orderdate date_of_order
+from customers c, employees e, orders o
+WHERE o.customerid = c.customerid AND
+      o.employeeid = e.employeeid AND
+      o.shipperid = 3
+ORDER BY c.country;
