@@ -3,7 +3,7 @@
 create SCHEMA xxx;
 
 -- wybór schematu
-set search_path = "xxx"
+set search_path = "xxx";
 
 -- tworzenie tabel:
 CREATE TABLE smart
@@ -11,4 +11,15 @@ CREATE TABLE smart
   id SERIAL PRIMARY KEY,
   name TEXT
 );
+
+ALTER TABLE xxx.products ALTER COLUMN price TYPE FLOAT USING price::FLOAT;
+
+CREATE TABLE orders (
+  orderid SERIAL,
+  customerid INTEGER,
+  employeeid SERIAL,
+  orderdate DATE,
+  shipperid INTEGER
+)
+
 
