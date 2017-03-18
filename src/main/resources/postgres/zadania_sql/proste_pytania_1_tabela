@@ -1,0 +1,10 @@
+SELECT * from customers WHERE city LIKE 'S%Paulo';
+
+-- pracownicy (starsi niż 60 lat); urodzeni przed 1960-01-01
+
+-- wszyscy klienci (customers) z państwa Meksyk
+
+-- liczba zamówień (orders) w 1995, 1996, 1997 (osobno, trzy zapytania)
+
+-- wypisać wszystkie produkty kategorii 4 lub 5
+
