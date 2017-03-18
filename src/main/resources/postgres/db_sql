@@ -4,9 +4,9 @@
 SELECT * FROM suppliers where city like 'L%' LIMIT 2;
 
 
-SELECT * FROM Suppliers order by country
-SELECT * FROM Suppliers where country = 'USA'
-SELECT * FROM [Customers] where CustomerName like 'A%'
+SELECT * FROM Suppliers order by country;
+SELECT * FROM Suppliers where country = 'USA';
+SELECT * FROM Customers where CustomerName like 'A%';
 
 SELECT * FROM [Orders] where orderdate > '1996-07-06' and orderdate < '1996-07-10'
 
@@ -16,3 +16,15 @@ INSERT INTO smart (name) VALUES ('X11');
 
 
 
+
+
+
+
+
+-- polecenie join:
+
+SELECT c.customername, c.city, c.country as customercountry, e.lastname
+from customers c, employees e, orders o
+WHERE o.customerid = c.customerid AND
+  o.employeeid = e.employeeid AND
+  o.shipperid = 1;
