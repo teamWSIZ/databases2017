@@ -1,0 +1,25 @@
+-- Ćwiczenia z join
+
+1) Wszystkie OrderDetail pracownika o employeeid 2
+2) Ostatnie 10 zamówień klienta o customerid 15, z zamówieniami i detalami zamówień
+
+
+
+
+
+
+
+
+----------------------
+rozw:
+1)
+SELECT od.* from orders o, orderdetail od
+WHERE o.orderid = od.orderid and o.employeeid = 2;
+
+2)
+SELECT od.*, o.*  from orders o, orderdetail od
+where o.orderid = od.orderid and o.customerid = 20
+LIMIT 10;
+
+
+

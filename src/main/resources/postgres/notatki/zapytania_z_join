@@ -17,3 +17,5 @@ WHERE o.customerid = c.customerid AND
       o.employeeid = e.employeeid AND
       o.shipperid = 3
 ORDER BY c.country;
+
+
