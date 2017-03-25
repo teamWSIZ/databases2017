@@ -1,23 +1,41 @@
 
 
 _) su       #wejście na root'a
-_) systemctl start sshd
-_) systemctl enable sshd
-_) hostnamectl    #-> wersja fedory (tu: 24)
+
+#Kroki do wykonania jako root
+_) systemctl start sshd     #uruchomienie serwisu ssh
+_) systemctl enable sshd    #włączenie ssh przy starcie
+_) hostnamectl              #-> wersja fedory (tu: 24)
+
+#instalacja repozytorium pakietów postgresa 9.5:
 _) rpm -Uvh https://download.postgresql.org/pub/repos/yum/9.5/fedora/fedora-24-x86_64/pgdg-fedora95-9.5-4.noarch.rpm
-_) dnf install postgresql95-server postgresql95
-_) /usr/pgsql-9.5/bin/postgresql95-setup initdb
-_) systemctl start postgresql-9.5
-_) systemctl enable postgresql-9.5
-_) su postgres
-_) psql
-_) \password postgres <nowe hasło>
-_) CREATE USER student WITH PASSWORD 'wsiz#1234';
-_) CREATE DATABASE student;
-_) GRANT ALL PRIVILEGES ON DATABASE student TO student;
+_) dnf install postgresql95-server postgresql95     #instalacja samego postgresa
+_) /usr/pgsql-9.5/bin/postgresql95-setup initdb     #inicjalizacja postgresa
+_) systemctl start postgresql-9.5       #uruchomienie PG
+_) systemctl enable postgresql-9.5      #włączenie PG przy starcie
+
+#Konfiguracja firewalla Fedory: można wykonać z komend jak poniżej, albo w GUI
+_) firewall-cmd --zone=public --add-port=5432/tcp                   #umożliwienie łączenia na port 5432 w firewallu
+_) firewall-cmd --zone=public --add-port=5432/tcp --permanent       #włączenie umożliwienia na stałe
+
+#Pierwsze logowanie administracyjne do bazy:
+_) su postgres      #przejście na usera postgres
+_) psql             #zalogowanie do bazy PG jako admin (nazwa usera: postgres)
+
+# Poniższe kroki do wykonania wewnątrz `psql`, czyli po zalogowaniu jako admin do PG
+_) \password postgres <nowe hasło>                  --nowe hasło (postgresowe) dla administratora
+_) CREATE USER student WITH PASSWORD 'wsiz#1234';   --tworzenie usera z nowym hasłem
+_) CREATE DATABASE student;                         --stworzenie nowej bazy
+_) GRANT ALL PRIVILEGES ON DATABASE student TO student;     --przydzielenie praw dla usera, w tym praw do kreowania schematów i tabel
+_) `Ctrl-D`     --wyjście z `psql`
+_) `Ctrl-D`     #wylogowanie z usera "postgres"; teraz będziemy z powrotem na userze root
+
+#Kroki do wykonania jako root
 _) cd /var/lib/pgsql/9.5/data
-_) nano pg_hba.conf         #wyedytować jak poniżej
-_) nano postgresql.conf     #wyedytować jak poniżej
+_) nano pg_hba.conf         #wyedytować tak by zasady dostępu były jak podano poniżej
+_) nano postgresql.conf     #wyedytować tak by zasady dostępu były jak podano poniżej
+
+#Przejście na usera student celem weryfikacji logowania do bazy przez zwykłego usera
 _) su student
 _) psql -d student -U student   #wpisać hasło wsiz#1234
 _) (z innego PC): telnet 10.10.23.147 5432    #test połączenia, czy firewalle OK
@@ -25,14 +43,14 @@ _) w intellij zapiąć nowe połączenie do bazy
 
 
 ---------------------
-## pg_hba.conf:
+##Plik: pg_hba.conf     -- ustala zasady łączenia z bazą: podsieci, i metodę (md5 znaczy logowanie hasłem)
 
 # TYPE  DATABASE        USER            ADDRESS                 METHOD
 # "local" is for Unix domain socket connections only
 local   all             all                                     md5
 host    all             all             10.10.0.0/16            md5
 
-## postgres.conf
+##Plik: postgres.conf   -- ustala na których adresach IP i porcie postgres ma nasłuchiwać
 
 #------------------------------------------------------------------------------
 # CONNECTIONS AND AUTHENTICATION
