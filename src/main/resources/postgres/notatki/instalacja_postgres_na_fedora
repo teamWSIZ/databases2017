@@ -1,0 +1,25 @@
+
+
+_) su       #wejście na root'a
+_) systemctl start sshd
+_) systemctl enable sshd
+_) hostnamectl    #-> wersja fedory (tu: 24)
+_) rpm -Uvh https://download.postgresql.org/pub/repos/yum/9.5/fedora/fedora-24-x86_64/pgdg-fedora95-9.5-4.noarch.rpm
+_) dnf install postgresql95-server postgresql95
+_) /usr/pgsql-9.5/bin/postgresql95-setup initdb
+_) systemctl start postgresql-9.5
+_) systemctl enable postgresql-9.5
+_) su postgres
+_) psql
+_) \password postgres <nowe hasło>
+_) CREATE USER student WITH PASSWORD 'wsiz#1234';
+_) CREATE DATABASE student;
+_) GRANT ALL PRIVILEGES ON DATABASE student TO student;
+_) cd /var/lib/pgsql/9.5/data
+_) nano pg_hba.conf         #wyedytować jak poniżej
+_) nano postgresql.conf     #wyedytować jak poniżej
+_) su student
+_) psql -d student -U student   #wpisać hasło wsiz#1234
+_) (z innego PC): telnet 10.10.23.147 5432    #test połączenia, czy firewalle OK
+_) w intellij zapiąć nowe połączenie do bazy
+
