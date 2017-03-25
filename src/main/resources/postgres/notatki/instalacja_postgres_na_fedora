@@ -23,3 +23,25 @@ _) psql -d student -U student   #wpisać hasło wsiz#1234
 _) (z innego PC): telnet 10.10.23.147 5432    #test połączenia, czy firewalle OK
 _) w intellij zapiąć nowe połączenie do bazy
 
+
+---------------------
+## pg_hba.conf:
+
+# TYPE  DATABASE        USER            ADDRESS                 METHOD
+# "local" is for Unix domain socket connections only
+local   all             all                                     md5
+host    all             all             10.10.0.0/16            md5
+
+## postgres.conf
+
+#------------------------------------------------------------------------------
+# CONNECTIONS AND AUTHENTICATION
+#------------------------------------------------------------------------------
+# - Connection Settings -
+listen_addresses = '*'                  # what IP address(es) to listen on;
+                                        # comma-separated list of addresses;
+                                        # defaults to 'localhost'; use '*' for all
+                                        # (change requires restart)
+port = 5432                             # (change requires restart)
+
+
