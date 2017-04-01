@@ -15,11 +15,18 @@ pg_dump nazwa_bazy > nazwa_pliku
 # Usuwanie baz:
 _) zalogować się jako user postgres
 _) wejść do psql: `psql`
-_) drop database student
+_) drop database student;
 
 
 #Odtwarzanie backupu do bazy:
-psql < nazwa_pliku
+(zakładamy, że baza, tutaj 'student' jest usunięta)
+
+psql    #wejście do postgresa
+CREATE DATABASE student;
+GRANT ALL PRIVILEGES ON DATABASE student TO student;
+
+#wyjść z postgresa
+psql nazwa_bazy < nazwa_pliku
 
 
 
