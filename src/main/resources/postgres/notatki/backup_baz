@@ -1,0 +1,22 @@
+
+
+# Założenie: logujemy się na usera 'postgres' na hoście bazy
+
+# Backup pojedynczej bazy (ze wszystkimi schematami):
+pg_dump nazwa_bazy > nazwa_pliku
+
+# Backup pojedynczego schematu bazy:
+pg_dump nazwa_bazy > nazwa_pliku
+
+
+# Usuwanie baz:
+_) zalogować się jako user postgres
+_) wejść do psql: `psql`
+_) drop database student
+
+
+#Odtwarzanie backupu do bazy:
+psql < nazwa_pliku
+
+
+
