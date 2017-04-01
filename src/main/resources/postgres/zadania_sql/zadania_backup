@@ -1,0 +1,7 @@
+
+
+1) Stworzyć backup pełnej bazy
+   - sprawdzić utworzony plik czy jest OK
+
+2) Usunąć bazę (na swoim serwerze) i wczytać ją z pliku backupu
+
