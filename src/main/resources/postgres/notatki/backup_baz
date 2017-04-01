@@ -1,11 +1,14 @@
 
 
-# Założenie: logujemy się na usera 'postgres' na hoście bazy
+## Założenie: logujemy się na usera 'postgres' na hoście bazy
+su postgres
+# przejście do folderu domowego usera:
+cd ~
 
-# Backup pojedynczej bazy (ze wszystkimi schematami):
+# Backup pojedynczej bazy (ze wszystkimi schematami) (u:postgres) :
 pg_dump nazwa_bazy > nazwa_pliku
 
-# Backup pojedynczego schematu bazy:
+# Backup pojedynczego schematu bazy (u: postgres) :
 pg_dump nazwa_bazy > nazwa_pliku
 
 
