@@ -9,6 +9,7 @@
     <persistence-unit name="xxxyyyzzz" transaction-type="RESOURCE_LOCAL">
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
         <class>app.model.Break</class>
+        <class>app.model.UserDetail</class>
         <properties>
             <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://10.10.22.255:5432/student" />
             <property name="javax.persistence.jdbc.user" value="student" />
