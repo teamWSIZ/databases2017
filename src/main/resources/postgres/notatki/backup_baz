@@ -28,6 +28,15 @@ GRANT ALL PRIVILEGES ON DATABASE student TO student;
 #wyjść z postgresa
 psql nazwa_bazy < nazwa_pliku
 
+----------------------------------------------------------------
+# Backup z innego hosta:
+pg_dump --host <host> --port 5432 --username <user>
+    --file <filename> --table <tablename> dbname
+
+#też:
+pg_dump -d <databasename> -t <tablename> > file.sql
+
+#bez usera: --no-owner
 
 
 
