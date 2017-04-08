@@ -8,7 +8,71 @@
     <artifactId>databases2017</artifactId>
     <version>1.0-SNAPSHOT</version>
 
+    <properties>
+        <spring.version>4.3.3.RELEASE</spring.version>
+        <spring.data.version>1.10.6.RELEASE</spring.data.version>
+        <hibernate.version>5.2.6.Final</hibernate.version>
+        <jackson.version>2.6.3</jackson.version>
+        <slf4j.version>1.7.7</slf4j.version>
+    </properties>
+
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>1.4.1.RELEASE</version>
+    </parent>
+    
+
     <dependencies>
+        <!-- Włączenie frameworka Spring, z modułami JPA (bazy) i MVC (rest-controller) START -->
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+
+        <!--JPA-->
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-entitymanager</artifactId>
+            <version>${hibernate.version}</version>
+        </dependency>
+        <!--JPA REPOSITORIES-->
+        <dependency>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-jpa</artifactId>
+            <version>${spring.data.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.jayway.jsonpath</groupId>
+            <artifactId>json-path</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- Koniec dependencji potrzebnych do działania Spring MVC, JPA -->
+
+        <!--Postgres-->
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>9.4.1212</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>slf4j-simple</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <!-- Lombok (w intellij potrzebny też plugin) -->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
