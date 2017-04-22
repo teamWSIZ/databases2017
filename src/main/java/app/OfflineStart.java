@@ -24,6 +24,16 @@ public class OfflineStart {
             System.out.println(d);
         }
 
+        System.out.println("###############################");
+        for(UserDetail d : detale.getByUserdetailidGreaterThan(30)) {
+            System.out.println(d);
+        }
+
+        System.out.println("###############################");
+        for(UserDetail d : detale.getByPeselStartingWith("ab")) {
+            System.out.println(d);
+        }
+
 
         ctx.close();
     }
