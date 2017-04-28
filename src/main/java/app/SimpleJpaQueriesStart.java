@@ -8,7 +8,7 @@ import app.model.UserDetailRepo;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 
-public class OfflineStart {
+public class SimpleJpaQueriesStart {
     public static void main(String[] args) {
         AnnotationConfigApplicationContext ctx =
                 new AnnotationConfigApplicationContext(SmallConfig.class);
