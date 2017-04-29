@@ -23,21 +23,24 @@ public class SimpleJpaQueriesStart {
             System.out.println(c);
         }
 
-        List<Integer> eId = employeeRepo.getEmployeeIds();
-        List<Integer> cId = customerRepo.getCustomerIds();
-        List<Integer> sId = shipperRepo.getShipperIds();
+        List<Shipper> shippers = shipperRepo.getByShippernameContaining("Uni");
+        System.out.println(shippers);
 
-        System.out.println(eId + " ### " + cId + " ### " + sId);
-
-        for (int i = 0; i < 1000; i++) {
-            Preorder created = new Preorder();
-            created.setCustomerid(getRandomElement(cId));
-            created.setEmployeeid(getRandomElement(eId));
-            created.setShipperid(getRandomElement(sId));
-            created.setOrderdate(new Date());
-            preorderRepo.save(created);
-            System.out.println(i);
-        }
+//        List<Integer> eId = employeeRepo.getEmployeeIds();
+//        List<Integer> cId = customerRepo.getCustomerIds();
+//        List<Integer> sId = shipperRepo.getShipperIds();
+//
+//        System.out.println(eId + " ### " + cId + " ### " + sId);
+//
+//        for (int i = 0; i < 1000; i++) {
+//            Preorder created = new Preorder();
+//            created.setCustomerid(getRandomElement(cId));
+//            created.setEmployeeid(getRandomElement(eId));
+//            created.setShipperid(getRandomElement(sId));
+//            created.setOrderdate(new Date());
+//            preorderRepo.save(created);
+//            System.out.println(i);
+//        }
         ctx.close();
     }
 
