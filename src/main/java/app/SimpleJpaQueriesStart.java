@@ -1,40 +1,48 @@
 package app;
 
 import app.config.SmallConfig;
-import app.model.Break;
-import app.model.BreakRepo;
-import app.model.UserDetail;
-import app.model.UserDetailRepo;
+import app.model.*;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
+import java.util.Date;
+import java.util.List;
+import java.util.Random;
 
 
 public class SimpleJpaQueriesStart {
+    private static Random r = new Random();
     public static void main(String[] args) {
         AnnotationConfigApplicationContext ctx =
                 new AnnotationConfigApplicationContext(SmallConfig.class);
-        BreakRepo repo = ctx.getBean(BreakRepo.class);
-        for(Break b : repo.findAll()) {
-            System.out.println(b);
+        CustomerRepo customerRepo = ctx.getBean(CustomerRepo.class);
+        EmployeeRepo employeeRepo = ctx.getBean(EmployeeRepo.class);
+        ShipperRepo shipperRepo = ctx.getBean(ShipperRepo.class);
+        PreorderRepo preorderRepo = ctx.getBean(PreorderRepo.class);
+
+        for(Customer c : customerRepo.findByCountry("France")) {
+            System.out.println(c);
         }
 
-        System.out.println("-------------------------------");
-        UserDetailRepo detale = ctx.getBean(UserDetailRepo.class);
+        List<Integer> eId = employeeRepo.getEmployeeIds();
+        List<Integer> cId = customerRepo.getCustomerIds();
+        List<Integer> sId = shipperRepo.getShipperIds();
 
-        for(UserDetail d : detale.findAll()) {
-            System.out.println(d);
+        System.out.println(eId + " ### " + cId + " ### " + sId);
+
+        for (int i = 0; i < 1000; i++) {
+            Preorder created = new Preorder();
+            created.setCustomerid(getRandomElement(cId));
+            created.setEmployeeid(getRandomElement(eId));
+            created.setShipperid(getRandomElement(sId));
+            created.setOrderdate(new Date());
+            preorderRepo.save(created);
+            System.out.println(i);
         }
-
-        System.out.println("###############################");
-        for(UserDetail d : detale.getByUserdetailidGreaterThan(30)) {
-            System.out.println(d);
-        }
-
-        System.out.println("###############################");
-        for(UserDetail d : detale.getByPeselStartingWith("ab")) {
-            System.out.println(d);
-        }
-
-
         ctx.close();
     }
+
+    private static Integer getRandomElement(List<Integer> e) {
+        return e.get(r.nextInt(e.size()));
+    }
+
 }
