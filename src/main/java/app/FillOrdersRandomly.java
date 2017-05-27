@@ -34,9 +34,12 @@ public class FillOrdersRandomly {
             preorderRepo.save(created);
             System.out.println(i);
         }
+
+        ctx.close();
     }
 
     private static Integer getRandomElement(List<Integer> e) {
         return e.get(r.nextInt(e.size()));
     }
+
 }
