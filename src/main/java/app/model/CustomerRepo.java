@@ -10,6 +10,8 @@ import java.util.Set;
 public interface CustomerRepo extends CrudRepository<Customer, Integer> {
     List<Customer> findByCountry(String country);
 
+    List<Customer> findByCustomernameContaining(String text);
+
     @Query("select c.customerid from Customer c")
     List<Integer> getCustomerIds();
 }

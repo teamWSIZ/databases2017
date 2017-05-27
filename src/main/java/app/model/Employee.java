@@ -4,6 +4,7 @@ import lombok.Data;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Table(name = "employees")
@@ -15,7 +16,7 @@ public class Employee {
     String lastname;
     String firstname;
     @Type(type = "date")
-    String birthdate;
+    Date birthdate;
     String photo;
     String notes;
 }
