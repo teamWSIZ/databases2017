@@ -2,6 +2,7 @@ package app;
 
 import app.config.SmallConfig;
 import app.model.*;
+import ch.qos.logback.core.db.dialect.OracleDialect;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import java.util.Date;
@@ -33,6 +34,10 @@ public class FillOrdersRandomly {
             created.setOrderdate(new Date());
             preorderRepo.save(created);
             System.out.println(i);
+            //todo: trzeba wygenerować też instancję orderdetail
+            // czyli: dodać do modelu orderdetail
+            // i spóbować je generować automatycznie...
+
         }
 
         ctx.close();
