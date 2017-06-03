@@ -9,6 +9,9 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Random;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 
 public class FillOrdersRandomly {
     private static Random r = new Random();
@@ -28,26 +31,34 @@ public class FillOrdersRandomly {
         List<Integer> sId = shipperRepo.getShipperIds();
         List<Integer> pId = productRepo.getProductIds();
 
+        ExecutorService service = Executors.newFixedThreadPool(128);
         for (int i = 0; i < 10000; i++) {
-            Preorder order = new Preorder();
-            order.setCustomerid(getRandomElement(cId));
-            order.setEmployeeid(getRandomElement(eId));
-            order.setShipperid(getRandomElement(sId));
-            order.setOrderdate(randomDate());
-            preorderRepo.save(order);
+            Integer ii = i;
+            service.submit(() -> {
+                Preorder order = new Preorder();
+                order.setCustomerid(getRandomElement(cId));
+                order.setEmployeeid(getRandomElement(eId));
+                order.setShipperid(getRandomElement(sId));
+                order.setOrderdate(randomDate());
+                preorderRepo.save(order);
 
-            //utworzyć instancję OrderDetail
-            OrderDetail detail = new OrderDetail();
-            detail.setOrderid(order.getOrderid());
-            detail.setProductid(getRandomElement(pId));
-            detail.setQuantity(r.nextInt(100)+1);
-            detailRepo.save(detail);
+                //utworzyć instancję OrderDetail
+                OrderDetail detail = new OrderDetail();
+                detail.setOrderid(order.getOrderid());
+                detail.setProductid(getRandomElement(pId));
+                detail.setQuantity(r.nextInt(100)+1);
+                detailRepo.save(detail);
 
 //            System.out.println("------------------");
 //            System.out.println("stworzone zamówienie:" + order + " --> " + detail);
-            System.out.println("[" + i + "]");
+                System.out.println("[" + ii + "]");
+            });
         }
-
+        try {
+            service.awaitTermination(100, TimeUnit.SECONDS);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         ctx.close();
     }
 
