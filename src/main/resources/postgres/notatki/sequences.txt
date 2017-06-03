@@ -1,0 +1,12 @@
+
+--ostatnia (aktuwalna) wartość ciągu (generatora id'ków)
+select last_value FROM orders_orderid_seq;
+
+--przesunięcie następnej wartości na 10500
+ALTER SEQUENCE orders_orderid_seq RESTART WITH 10500;
+
+--pelny debug: sprawdzenie następnej wartości, oraz maksymalnej wartości użytej w tabeli, i restart
+select last_value FROM orderdetail_orderdetailid_seq;
+SELECT max(orderdetailid) from orderdetail;
+ALTER SEQUENCE orderdetail_orderdetailid_seq RESTART WITH 600;
+

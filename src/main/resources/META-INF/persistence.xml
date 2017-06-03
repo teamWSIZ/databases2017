@@ -12,6 +12,7 @@
         <class>app.model.Preorder</class>
         <class>app.model.Employee</class>
         <class>app.model.Shipper</class>
+        <class>app.model.OrderDetail</class>
         <properties>
             <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://10.10.22.255:5432/student" />
             <property name="javax.persistence.jdbc.user" value="student" />
