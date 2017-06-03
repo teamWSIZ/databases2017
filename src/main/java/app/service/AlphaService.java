@@ -9,6 +9,10 @@ public class AlphaService {
     ProductRepo productRepo;
 
     public void showProducts() {
-        productRepo.findAll().forEach(System.out::println);
+//        productRepo.findAll().forEach(System.out::println);
+    }
+
+    public int add(int a, int b) {
+        return a + b;
     }
 }
