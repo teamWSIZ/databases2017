@@ -28,7 +28,7 @@ public class FillOrdersRandomly {
         List<Integer> sId = shipperRepo.getShipperIds();
         List<Integer> pId = productRepo.getProductIds();
 
-        for (int i = 0; i < 1000; i++) {
+        for (int i = 0; i < 10000; i++) {
             Preorder order = new Preorder();
             order.setCustomerid(getRandomElement(cId));
             order.setEmployeeid(getRandomElement(eId));
@@ -43,8 +43,9 @@ public class FillOrdersRandomly {
             detail.setQuantity(r.nextInt(100)+1);
             detailRepo.save(detail);
 
-            System.out.println("------------------");
-            System.out.println("stworzone zamówienie:" + order + " --> " + detail);
+//            System.out.println("------------------");
+//            System.out.println("stworzone zamówienie:" + order + " --> " + detail);
+            System.out.println("[" + i + "]");
         }
 
         ctx.close();
