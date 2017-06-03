@@ -8,16 +8,19 @@
 
     <persistence-unit name="xxxyyyzzz" transaction-type="RESOURCE_LOCAL">
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
-        <class>app.model.Break</class>
-        <class>app.model.UserDetail</class>
+        <class>app.model.Customer</class>
+        <class>app.model.Preorder</class>
+        <class>app.model.Employee</class>
+        <class>app.model.Shipper</class>
         <properties>
             <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://10.10.22.255:5432/student" />
             <property name="javax.persistence.jdbc.user" value="student" />
             <property name="javax.persistence.jdbc.password" value="wsiz#1234" />
             <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver" />
 
-            <property name="hibernate.show_sql" value="false" />
-            <property name="hibernate.format_sql" value="false" />
+            <property name="hibernate.default_schema" value="xxx"/>
+            <property name="hibernate.show_sql" value="true" />
+            <property name="hibernate.format_sql" value="true" />
             <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQL9Dialect" />
             <property name="hibernate.hbm2ddl.auto" value="validate" />
             <property name="hibernate.temp.use_jdbc_metadata_defaults" value="false" />

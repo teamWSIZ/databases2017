@@ -5,11 +5,11 @@ import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;
 
-public interface UserDetailRepo extends CrudRepository<UserDetail, Integer> {
+public interface PreorderRepo extends CrudRepository<Preorder, Integer> {
 
-    List<UserDetail> getByUserdetailidGreaterThan(Integer id);
+//    List<Preorder> getByUserdetailidGreaterThan(Integer id);
 
-    List<UserDetail> getByPeselStartingWith(String ppp);
+//    List<Preorder> getByPeselStartingWith(String ppp);
 
     //Więcej konwencji do generowania przydatnych metod:
     //https://docs.spring.io/spring-data/jpa/docs/current/reference/html/

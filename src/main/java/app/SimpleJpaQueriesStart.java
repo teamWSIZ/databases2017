@@ -1,40 +1,43 @@
 package app;
 
 import app.config.SmallConfig;
-import app.model.Break;
-import app.model.BreakRepo;
-import app.model.UserDetail;
-import app.model.UserDetailRepo;
+import app.model.*;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.Random;
 
 
 public class SimpleJpaQueriesStart {
+
     public static void main(String[] args) {
         AnnotationConfigApplicationContext ctx =
                 new AnnotationConfigApplicationContext(SmallConfig.class);
-        BreakRepo repo = ctx.getBean(BreakRepo.class);
-        for(Break b : repo.findAll()) {
-            System.out.println(b);
+        CustomerRepo customerRepo = ctx.getBean(CustomerRepo.class);
+        EmployeeRepo employeeRepo = ctx.getBean(EmployeeRepo.class);
+        ShipperRepo shipperRepo = ctx.getBean(ShipperRepo.class);
+        PreorderRepo preorderRepo = ctx.getBean(PreorderRepo.class);
+
+        for(Customer c : customerRepo.findByCountry("France")) {
+            System.out.println(c);
+        }
+
+        System.out.println("------------------------------");
+        for (Customer c : customerRepo.findByCustomernameContaining("ies")) {
+            System.out.println(c);
         }
 
         System.out.println("-------------------------------");
-        UserDetailRepo detale = ctx.getBean(UserDetailRepo.class);
-
-        for(UserDetail d : detale.findAll()) {
-            System.out.println(d);
+        List<Integer> employeeIds = new ArrayList<>();
+        for(Employee e : employeeRepo.findAll()) {
+            employeeIds.add(e.getEmployeeid());
         }
-
-        System.out.println("###############################");
-        for(UserDetail d : detale.getByUserdetailidGreaterThan(30)) {
-            System.out.println(d);
-        }
-
-        System.out.println("###############################");
-        for(UserDetail d : detale.getByPeselStartingWith("ab")) {
-            System.out.println(d);
-        }
-
+        System.out.println(employeeIds);
 
         ctx.close();
     }
+
+
 }
