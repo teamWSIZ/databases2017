@@ -1,0 +1,19 @@
+A -- zamówienia
+P -- produktu
+
+CREATE TABLE A (
+  aid SERIAL,
+  pid INT,
+  quantity INT
+);
+
+CREATE TABLE P (
+  pid   SERIAL,
+  price INT
+);
+
+SELECT p.pid, sum(a.quantity * p.price) FROM A a, P p WHERE a.pid = p.pid GROUP BY p.pid;
+
+Wynik:
+1   6
+2   20
