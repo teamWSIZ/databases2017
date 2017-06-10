@@ -26,3 +26,15 @@ WHERE od.orderid = o.orderid AND
       od.productid = 10;
 
 -- Ile było sprzedaży od klientów z argentyny w 2015r ?
+SELECT count(*) FROM orders o, customers c
+WHERE o.customerid = c.customerid and
+ c.country='Argentina' and
+      o.orderdate BETWEEN '2015-01-01' AND '2016-12-31';
+
+
+--prosta: ile zamówień w 2015r wykonał przewoźnik 'Speedy Express'
+
+--trudniejsza: ile zamówień w 2015r przewoźnik 'Speedy Express' przewiózł do
+-- Argentyny
+
+
