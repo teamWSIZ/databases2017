@@ -20,21 +20,23 @@ public class SimpleJpaQueriesStart {
         ShipperRepo shipperRepo = ctx.getBean(ShipperRepo.class);
         PreorderRepo preorderRepo = ctx.getBean(PreorderRepo.class);
 
-        for(Customer c : customerRepo.findByCountry("France")) {
-            System.out.println(c);
-        }
+//        for(Customer c : customerRepo.findByCountry("France")) {
+//            System.out.println(c);
+//        }
+//
+//        System.out.println("------------------------------");
+//        for (Customer c : customerRepo.findByCustomernameContaining("ies")) {
+//            System.out.println(c);
+//        }
+//
+//        System.out.println("-------------------------------");
+//        List<Integer> employeeIds = new ArrayList<>();
+//        for(Employee e : employeeRepo.findAll()) {
+//            employeeIds.add(e.getEmployeeid());
+//        }
+//        System.out.println(employeeIds);
 
-        System.out.println("------------------------------");
-        for (Customer c : customerRepo.findByCustomernameContaining("ies")) {
-            System.out.println(c);
-        }
-
-        System.out.println("-------------------------------");
-        List<Integer> employeeIds = new ArrayList<>();
-        for(Employee e : employeeRepo.findAll()) {
-            employeeIds.add(e.getEmployeeid());
-        }
-        System.out.println(employeeIds);
+        System.out.println(employeeRepo.countOfOrdersByProduct(5, 10));
 
         ctx.close();
     }

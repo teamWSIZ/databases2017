@@ -17,6 +17,14 @@ WHERE od.orderid = o.orderid AND
       o.orderdate BETWEEN '2015-01-01' AND '2016-12-31' AND
       od.productid = 10;
 
+SELECT count(*)
+FROM orders o, orderdetail od
+WHERE od.orderid = o.orderid AND
+      o.employeeid = 5 AND
+      od.productid = 10;
+
+
+
 -- Ile produktów typu 10 sprzedał pracownik nr 5 w 2015 roku
 SELECT sum(od.quantity)
 FROM orders o, orderdetail od
