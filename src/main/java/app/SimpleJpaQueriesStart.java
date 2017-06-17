@@ -9,6 +9,9 @@ import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
+/**
+ * Prosta aplikacja startująca kontekst z dostępem do repozytorów bazodanowych.
+ */
 
 public class SimpleJpaQueriesStart {
 
@@ -20,9 +23,9 @@ public class SimpleJpaQueriesStart {
         ShipperRepo shipperRepo = ctx.getBean(ShipperRepo.class);
         PreorderRepo preorderRepo = ctx.getBean(PreorderRepo.class);
 
-//        for(Customer c : customerRepo.findByCountry("France")) {
-//            System.out.println(c);
-//        }
+        for(Customer c : customerRepo.findByCountry("France")) {
+            System.out.println(c);
+        }
 //
 //        System.out.println("------------------------------");
 //        for (Customer c : customerRepo.findByCustomernameContaining("ies")) {

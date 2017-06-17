@@ -13,6 +13,11 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
+/**
+ * Aplikacaj stawiająca kontekst spring, i wypełniająca bazę danych losowymi danymi.
+ */
+
+
 public class FillOrdersRandomly {
     private static Random r = new Random();
     public static void main(String[] args) {
@@ -31,9 +36,16 @@ public class FillOrdersRandomly {
         List<Integer> sId = shipperRepo.getShipperIds();
         List<Integer> pId = productRepo.getProductIds();
 
+        /*
+         * Uruchamiamy egzekutor ze 128 wątkami.
+         */
         ExecutorService service = Executors.newFixedThreadPool(128);
         for (int i = 0; i < 10000; i++) {
             Integer ii = i;
+            /*
+             * Wrzucamy do egzekutora zadanie stworzenia zamówienia i jego detali;
+             * Operacja ta trwa ~10ms, w tym czasie wątek czeka (ale inne się wykonują).
+             */
             service.submit(() -> {
                 Preorder order = new Preorder();
                 order.setCustomerid(getRandomElement(cId));
