@@ -25,8 +25,6 @@ public class ThreadsExamples {
         //serwis z przygotowanymi 10cioma wątkami
         ExecutorService executor = Executors.newFixedThreadPool(10);
 
-
-
         for (int i = 0; i < 100; i++) {
             Integer ii = i;
             System.out.println("Wrzucamy zadanie nr " + ii + " z wątku " +
