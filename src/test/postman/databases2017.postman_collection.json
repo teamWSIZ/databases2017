@@ -1,0 +1,84 @@
+{
+	"variables": [],
+	"info": {
+		"name": "databases2017",
+		"_postman_id": "bd45c2a2-5a86-ddc5-1222-0683992fb982",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "/employees",
+			"request": {
+				"url": "http://localhost:8080/employees",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "/customers",
+			"request": {
+				"url": "{{w3url}}/customers",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "/customers/{customerid}",
+			"request": {
+				"url": "{{w3url}}/customers/2",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "/customers",
+			"request": {
+				"url": "{{w3url}}/customers",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"customerid\": null,\n    \"customername\": \"Don Pedrox SRR\",\n    \"contactname\": \"Don Pedro\",\n    \"address\": \"Avda. de la Constitución 2221\",\n    \"city\": \"México D.F.\",\n    \"postalcode\": \"5021\",\n    \"country\": \"Mexico\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "/customers/{customerid}",
+			"request": {
+				"url": "{{w3url}}/customers/1010",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"customerid\": 1010,\n    \"customername\": \"Don Pedro SRR\",\n    \"contactname\": \"Don Pedro\",\n    \"address\": \"Avda. de la Constitución 2221\",\n    \"city\": \"México D.F.\",\n    \"postalcode\": \"5021\",\n    \"country\": \"Mexico\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}

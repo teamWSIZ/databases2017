@@ -63,7 +63,7 @@ public class MainController {
     //Create customer
     @RequestMapping(value = "/customers", method = RequestMethod.POST)
     @ResponseBody
-    public Customer createStudent(@RequestBody Customer customer) {
+    public Customer createCustomer(@RequestBody Customer customer) {
         log.info("Attempt to create a new customer: [{}]", customer);
         if (!entityValidator.isCustomerValid(customer)) {
             throw new RuntimeException("Customer data not valid");
@@ -71,7 +71,24 @@ public class MainController {
         return customerRepo.save(customer);
     }
 
-
+    //Update customer
+    @RequestMapping(value = "/customers/{customerid}", method = RequestMethod.PUT)
+    @ResponseBody
+    public Customer updateCustomer(
+            @PathVariable(value = "customerid") Integer customerid,
+            @RequestBody Customer customer) {
+        log.info("Attempt to update customer: [{}], with customerid: [{}]", customer, customerid);
+        if (!customerid.equals(customer.getCustomerid())) {
+            throw new RuntimeException("Customerid's don't match");
+        }
+        if (customerRepo.findOne(customerid)==null) {
+            throw new RuntimeException("No customer with given customerid in the DB");
+        }
+        if (!entityValidator.isCustomerValid(customer)) {
+            throw new RuntimeException("Customer data not valid");
+        }
+        return customerRepo.save(customer);
+    }
 
 
     // Employees
