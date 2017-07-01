@@ -9,7 +9,7 @@
         </layout>
     </appender>
 
-    <logger name="org.springframework.web" level="INFO">
+    <logger name="org.springframework.web" level="DEBUG">
         <appender-ref ref="STDOUT" />
     </logger>
 
@@ -18,14 +18,20 @@
     <!--</logger>-->
 
     <!--    #Shows methods marked as @Transactional -->
-    <logger name="log4j.logger.org.springframework.transaction" level="DEBUG">
+    <logger name="org.springframework.transaction" level="DEBUG">
         <appender-ref ref="STDOUT" />
     </logger>
     <!-- # FULL transaction trace -->
-    <logger name="log4j.logger.org.springframework.orm.jpa.JpaTransactionManager"
+    <logger name="org.springframework.orm.jpa.JpaTransactionManager"
             level="DEBUG">
         <appender-ref ref="STDOUT" />
     </logger>
+
+    <logger name="app.service.OrderService"
+            level="DEBUG">
+        <appender-ref ref="STDOUT" />
+    </logger>
+
 
     <root level="INFO">
         <appender-ref ref="STDOUT" />

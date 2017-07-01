@@ -4,6 +4,7 @@ import app.model.OrderDetail;
 import app.model.OrderDetailRepo;
 import app.model.Preorder;
 import app.model.PreorderRepo;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.stereotype.Component;
@@ -12,6 +13,7 @@ import javax.transaction.Transactional;
 import java.util.Date;
 
 @Component
+@Slf4j
 public class OrderService {
     @Autowired
     PreorderRepo orderRepo;
@@ -22,6 +24,7 @@ public class OrderService {
     @Modifying
     public void createNewOrder(Integer customerId, Integer employeeId, Integer shipperId,
                         Integer productId, Integer quantity) {
+        log.debug("Start creating new order");
         Preorder order = new Preorder();
         order.setCustomerid(customerId);
         order.setEmployeeid(employeeId);
@@ -39,6 +42,8 @@ public class OrderService {
         detail.setOrderid(order.getOrderid());
         orderDetailRepo.save(detail);
 
+        log.debug("Created new order; orderid=[{}], orderdetailid=[{}]",
+            order.getOrderid(), detail.getOrderdetailid());
     }
 
 }
