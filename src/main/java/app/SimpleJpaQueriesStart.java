@@ -3,7 +3,9 @@ package app;
 import app.config.SmallConfig;
 import app.model.*;
 import app.service.OrderService;
+import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.orm.jpa.JpaSystemException;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -43,7 +45,18 @@ public class SimpleJpaQueriesStart {
 
 //        System.out.println(employeeRepo.countOfOrdersByProduct(5, 10));
 
-        orderService.createNewOrder(1, 1, 1, 1, 1);
+        /**
+         * TODO:
+         *  - podłączyć metody tworzenia i usuwania zamówień do kontrolera
+         *  - sprawdzić kaskadowość i transakcyjność usuwania zamówień
+         */
+
+
+        try {
+            orderService.createNewOrder(1, 1, 1, -1, 1);
+        } catch (JpaSystemException e) {
+            System.out.println("############## Błąd: złamanie klucza obcego");
+        }
 
         ctx.close();
     }

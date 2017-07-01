@@ -46,4 +46,27 @@ public class OrderService {
             order.getOrderid(), detail.getOrderdetailid());
     }
 
+
+    /*
+     * Usuwanie zamówień.
+     *
+     * Uwaga: orderdetail ma klucz obcy na orders(orderid),
+     * który ma własność "ON DELETE CASCADE", tzn.
+     * jeśli order jest usuwany, to wszystkie orderdetail
+     * mające do niego referencje również zostaną usunięte.
+     *
+     * Dodawanie atrybutu "ON DELETE CASCADE" można wykonać
+     * w intellij db, albo
+     *
+     * add constraint pref_scores_gid_fkey
+     * foreign key (gid)
+     * references pref_games(gid)
+     * on delete cascade;
+     */
+    @Transactional
+    @Modifying
+    void deleteOrder(Integer orderId) {
+        orderRepo.delete(orderId);
+    }
+
 }
