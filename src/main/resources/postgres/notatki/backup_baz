@@ -7,6 +7,9 @@ cd ~
 
 # Backup pojedynczej bazy (ze wszystkimi schematami) (u:postgres) :
 pg_dump nazwa_bazy > nazwa_pliku
+(przykład backupu używającego nie-adminowego konta:
+    pg_dump student -U student > backup_1_July_2017
+)
 
 # Backup pojedynczego schematu bazy (u: postgres) :
 pg_dump nazwa_bazy > nazwa_pliku
