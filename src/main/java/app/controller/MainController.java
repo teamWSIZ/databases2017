@@ -45,6 +45,11 @@ public class MainController {
     @Autowired
     EntityValidator entityValidator;
 
+    @RequestMapping(value = "/status")
+    public String getStatus() {
+        return "DB service running OK";
+    }
+
     // Customers
 
     //Wszyscy klienci
