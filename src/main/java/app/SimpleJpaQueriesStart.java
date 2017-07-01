@@ -2,6 +2,7 @@ package app;
 
 import app.config.SmallConfig;
 import app.model.*;
+import app.service.OrderService;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import java.util.ArrayList;
@@ -22,10 +23,11 @@ public class SimpleJpaQueriesStart {
         EmployeeRepo employeeRepo = ctx.getBean(EmployeeRepo.class);
         ShipperRepo shipperRepo = ctx.getBean(ShipperRepo.class);
         PreorderRepo preorderRepo = ctx.getBean(PreorderRepo.class);
+        OrderService orderService = ctx.getBean(OrderService.class);
 
-        for(Customer c : customerRepo.findByCountry("France")) {
-            System.out.println(c);
-        }
+//        for(Customer c : customerRepo.findByCountry("France")) {
+//            System.out.println(c);
+//        }
 //
 //        System.out.println("------------------------------");
 //        for (Customer c : customerRepo.findByCustomernameContaining("ies")) {
@@ -39,7 +41,9 @@ public class SimpleJpaQueriesStart {
 //        }
 //        System.out.println(employeeIds);
 
-        System.out.println(employeeRepo.countOfOrdersByProduct(5, 10));
+//        System.out.println(employeeRepo.countOfOrdersByProduct(5, 10));
+
+        orderService.createNewOrder(1, 1, 1, 1, 1);
 
         ctx.close();
     }

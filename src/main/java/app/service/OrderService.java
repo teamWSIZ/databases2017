@@ -5,6 +5,7 @@ import app.model.OrderDetailRepo;
 import app.model.Preorder;
 import app.model.PreorderRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.stereotype.Component;
 
 import javax.transaction.Transactional;
@@ -18,7 +19,8 @@ public class OrderService {
     OrderDetailRepo orderDetailRepo;
 
     @Transactional
-    void createNewOrder(Integer customerId, Integer employeeId, Integer shipperId,
+    @Modifying
+    public void createNewOrder(Integer customerId, Integer employeeId, Integer shipperId,
                         Integer productId, Integer quantity) {
         Preorder order = new Preorder();
         order.setCustomerid(customerId);
@@ -30,6 +32,9 @@ public class OrderService {
         detail.setQuantity(quantity);
         detail.setProductid(productId);
 
+        //Te trzy instrukcje muszą być wykonane z logiką transakcyjną, tzn.
+        // albo wszystkie trzy naraz będą OK, albo nie powinno zostać śladu po ich wykonaniu
+        // (stan bazy jak sprzed wykonania metody)
         orderRepo.save(order);
         detail.setOrderid(order.getOrderid());
         orderDetailRepo.save(detail);
